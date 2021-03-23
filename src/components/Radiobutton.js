@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 
 export default function RadioButtons({ options, selectedOption, onSelect }) {
   return (
-    <View>
+    <View style={styles.buttonContainer1}>
       {options.map((item) => {
         return (
           <View key={item.key} style={styles.buttonContainer}>
-            <Text>{item.text}</Text>
+           
             <TouchableOpacity
               style={styles.circle}
               onPress={() => {
@@ -17,6 +17,7 @@ export default function RadioButtons({ options, selectedOption, onSelect }) {
                 <View style={styles.checkedCircle} />
               )}
             </TouchableOpacity>
+            <Text>{item.text}</Text>
           </View>
         );
       })}
@@ -27,9 +28,10 @@ export default function RadioButtons({ options, selectedOption, onSelect }) {
 const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
-    // justifyContent: 'space-between',
-    alignItems: 'center',
-    // marginBottom: 30,
+  },
+  buttonContainer1: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 
   circle: {
@@ -40,6 +42,7 @@ const styles = StyleSheet.create({
     borderColor: '#000',
     alignItems: 'center',
     justifyContent: 'center',
+    marginRight:10
   },
 
   checkedCircle: {

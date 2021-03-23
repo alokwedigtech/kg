@@ -1,17 +1,19 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   View,
   Text,
-  Image,
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  Button,
+  ScrollView,
 } from 'react-native';
 import RadioButton from '../../../components/Radiobutton';
 import genderdata from '../../../staticdata/genderdata';
-import StyledButton from '../../../components/Button';
-const RegisterProfile = () => {
+import Registrationindicator from '../../../components/Registrationindicator';
+import Entypo from 'react-native-vector-icons/Entypo';
+import Touchablebutton from '../../../components/touchablebutton';
+
+const RegisterProfile = ({navigation}) => {
   const [selectedOption, setSelectedOption] = React.useState(null);
 
   const onSelect = item => {
@@ -37,48 +39,80 @@ const RegisterProfile = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.containerprofile}>
-        <View style={styles.profilelogo}></View>
-        <View style={styles.profilecontainer}>
-          <Text>Personal Deatils</Text>
-          <Text style={styles.mobileno}>Mobile No.</Text>
-          <TextInput
-            placeholder={'7508769090'}
-            style={styles.inputboxlogin}
-            maxLength={10}
-          />
+      <Registrationindicator />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.containerprofile}>
+          <View style={styles.profilelogo}>
+            <TouchableOpacity>
+              <Entypo
+                name="edit"
+                size={25}
+                color="#000"
+                style={styles.userprofileedit}
+              />
+            </TouchableOpacity>
 
-          <Text style={styles.mobileno}>Mobile No.</Text>
-          <TextInput
-            placeholder={'7508769090'}
-            style={styles.inputboxlogin}
-            maxLength={10}
-          />
+            <Entypo
+              name="user"
+              size={100}
+              color="#000"
+              style={styles.userprofile}
+            />
+          </View>
 
-          <Text style={styles.mobileno}>Mobile No.</Text>
-          <TextInput
-            placeholder={'7508769090'}
-            style={styles.inputboxlogin}
-            maxLength={10}
-          />
-          <Text>Gender</Text>
-          <View style={styles.radiobtn}>
+          <View style={styles.profilecontainer}>
+            <Text style={styles.personaldetailstext}>Personal Deatils</Text>
+            <View style={styles.inputaera}>
+              <Text style={styles.inputlabel}>Full name</Text>
+              <TextInput
+                placeholder={'enter the name'}
+                style={styles.inputboxlogin}
+                maxLength={10}
+              />
+            </View>
+
+            <View style={styles.inputaera}>
+              <Text style={styles.inputlabel}>Email</Text>
+              <TextInput
+                placeholder={'enter the email'}
+                style={styles.inputboxlogin}
+                maxLength={10}
+              />
+            </View>
+
+            <View style={styles.inputaera}>
+              <Text style={styles.inputlabel}>Mobile No.</Text>
+              <TextInput
+                placeholder={'enter mob no'}
+                style={styles.inputboxlogin}
+                maxLength={10}
+              />
+            </View>
+
+            <Text style={styles.genderselect}>Gender</Text>
             <RadioButton
               selectedOption={selectedOption}
               onSelect={onSelect}
               options={genderdata}
             />
           </View>
+
+          <View style={styles.bottombtn}>
+
+            <Touchablebutton
+              content={'Back'}
+              onPress={() => navigation.goBack()}
+            />
+
+            <Touchablebutton
+              content={'Next'}
+              type={'next'}
+              onPress={() => navigation.navigate('Professionaldetails')}
+            />
+
+          </View>
         </View>
-        <Text>ssdsddsdd</Text>
-        {/* <View style={styles.profilebtn}> */}
-          <StyledButton
-            type="primary"
-            content={'Login'}
-            onPress={Loginsubmit}
-          />
-        {/* </View> */}
-      </View>
+      </ScrollView>
     </View>
   );
 };
@@ -88,27 +122,62 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f5f5f5',
   },
+  bottombtn: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 40,
+    width: '100%',
+    marginBottom: 25,
+  },
   containerprofile: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 100,
+    marginTop: 10,
     paddingHorizontal: 20,
   },
+  userprofile: {
+    alignSelf: 'center',
+  },
+  inputaera: {
+    marginTop: 10,
+  },
+  userprofileedit: {
+    alignSelf: 'flex-end',
+    paddingRight: 20,
+  },
+  personaldetailstext: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginBottom: 25,
+    paddingTop: 100,
+  },
+  genderselect: {
+    fontSize: 18,
+    color: '#c1c1c1',
+    marginTop: 20,
+    marginBottom: 20,
+  },
+  inputlabel: {
+    color: '#c1c1c1',
+    fontSize: 15,
+  },
+
   profilelogo: {
-    height: 170,
-    width: 170,
-    backgroundColor: 'red',
-    borderRadius: 150,
-    // marginTop: -30
+    height: 160,
+    width: 160,
+    backgroundColor: '#fff',
+    borderRadius: 90,
+    backgroundColor: '#fff',
+    zIndex: 100,
+    elevation: 2,
   },
   profilecontainer: {
-    // height: 150,
     width: '100%',
     backgroundColor: '#fff',
-    borderRadius: 10,
+    borderRadius: 20,
     paddingHorizontal: 20,
     paddingVertical: 20,
-    marginBottom: 40,
+    marginTop: -80,
   },
   profilebtn: {
     flexDirection: 'row',
@@ -119,9 +188,7 @@ const styles = StyleSheet.create({
 
   containerradiao: {
     marginBottom: 35,
-    // alignItems: 'center',
     flexDirection: 'row',
-    // justifyContent: 'space-between',
   },
   radioText: {
     marginRight: 5,
@@ -149,9 +216,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '600',
     backgroundColor: '#F3FBFE',
-  },
-  radiobtn: {
-    flexDirection: 'row',
   },
 });
 export default RegisterProfile;

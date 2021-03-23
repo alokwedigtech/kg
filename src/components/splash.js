@@ -1,11 +1,18 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import {View, StatusBar,StyleSheet} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-const SplashScreen = () => {
+const SplashScreen = ({navigation}) => {
+  
+  useEffect(()=> {
+    setTimeout(()=>{
+      navigation.navigate('Login')
+    },3000)
+  },[])
+
   return (
     <>
-      <StatusBar backgroundColor="#f8821b" barStyle="light-content" />
+      {/* <StatusBar backgroundColor="#f8821b" barStyle="light-content" /> */}
       <LinearGradient
         colors={['#f8821b', '#e44b08']}
         style={styles.splashcontainer}>

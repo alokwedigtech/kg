@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -8,10 +8,12 @@ import {
   TextInput,
   Alert,
   Image,
+  TouchableOpacity,
+  ScrollView
 } from 'react-native';
 import StyledButton from '../../../components/Button';
-const Login = () => {
 
+const Login = ({ navigation }) => {
   const [mobileno, setmobileno] = useState('');
   const [loginerror, setloginerror] = useState(false);
 
@@ -25,12 +27,11 @@ const Login = () => {
   };
 
   const Loginsubmit = () => {
-    if(mobileno.length===9){
-      Alert.alert("submit")
-      setloginerror(false)
-    }
-    else{
-      setloginerror(true)
+    if (mobileno.length === 9) {
+      Alert.alert('submit');
+      setloginerror(false);
+    } else {
+      setloginerror(true);
     }
   };
   return (
@@ -44,50 +45,67 @@ const Login = () => {
         <ImageBackground
           source={require('../../../assests/images/girllawer.jpg')}
           style={styles.image}>
-          <View style={styles.mainlogin}>
-            <View style={styles.loginscreentop}>
-              <Image
-                source={require('../../../assests/images/girllawer.jpg')}
-                style={styles.logo}
-              />
-              <Text style={styles.Kanoontext}>
-                Kanoon<Text style={styles.Gurustext}> Gurus</Text>
-              </Text>
-            </View>
-
-            <View style={styles.loginscreen}>
-              <Text style={styles.loginheading}>Lawyer's Login</Text>
-              <Text style={styles.loginmob}>
-                Enter your mobile no. to login
-              </Text>
-              <View style={styles.inputarea}>
-                <Text style={styles.mobileno}>Mobile No.</Text>
-                <TextInput
-                  placeholder={'7508769090'}
-                  style={styles.inputboxlogin}
-                  keyboardType="numeric"
-                  onChangeText={text => loginonchange(text)}
-                  value={mobileno}
-                  maxLength={10}
+          <View
+            style={{
+              flex: 1,
+              // backgroundColor: '#fafafa'
+            }}>
+            <View style={{ flex: 1 }}>
+              <View style={styles.loginscreentop}>
+                <Image
+                  source={require('../../../assests/images/girllawer.jpg')}
+                  style={styles.logo}
                 />
-                {loginerror ? (
-                  <Text style={styles.moberror}>
-                    Your mobile no. is not registered with us
-                  </Text>
-                ) : null}
-                <View style={styles.loginbtn}>
-                  <StyledButton
-                    type="primary"
-                    content={'Login'}
-                    onPress={Loginsubmit}
+                <Text style={styles.Kanoontext}>
+                  Kanoon<Text style={styles.Gurustext}> Gurus</Text>
+                </Text>
+              </View>
+
+              <View style={styles.loginscreen}>
+                <ScrollView showsVerticalScrollIndicator={false}>
+                <Text style={styles.loginheading}>Lawyer's Login</Text>
+                <Text style={styles.loginmob}>
+                  Enter your mobile no. to login
+                </Text>
+                <View style={styles.inputarea}>
+                  <Text style={styles.mobileno}>Mobile No.</Text>
+                  <TextInput
+                    placeholder={'7508769090'}
+                    style={styles.inputboxlogin}
+                    keyboardType="numeric"
+                    onChangeText={text => loginonchange(text)}
+                    value={mobileno}
+                    maxLength={10}
                   />
+                  {loginerror ? (
+                    <Text style={styles.moberror}>
+                      Your mobile no. is not registered with us
+                    </Text>
+                  ) : null}
+                  <View style={styles.loginbtn}>
+                    <StyledButton
+                      type="primary"
+                      content={'Login'}
+                      onPress={Loginsubmit}
+                    />
+                  </View>
+                  <View style={styles.nothaveaccountcontainer}>
+                    <Text style={styles.nothaveaccount}>
+                      Don't have account?{' '}
+                      <TouchableOpacity>
+                        <Text
+                          style={styles.haveaccount}
+                          onPress={() =>
+                            navigation.navigate('RegisterProfile')
+                          }>
+                          {' '}
+                          Register here
+                        </Text>
+                      </TouchableOpacity>
+                    </Text>
+                  </View>
                 </View>
-                <View style={styles.nothaveaccountcontainer}>
-                  <Text style={styles.nothaveaccount}>
-                    Don't have account?{' '}
-                    <Text style={styles.haveaccount}> Register here</Text>
-                  </Text>
-                </View>
+              </ScrollView>
               </View>
             </View>
           </View>
@@ -101,35 +119,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    // backgroundColor:'red'
   },
   loginscreen: {
-    height: '65%',
+    flex: 1,
     width: '100%',
     backgroundColor: '#fff',
-    bottom: 0,
-    position: 'absolute',
-
     borderTopRightRadius: 100,
     borderTopLeftRadius: 100,
-    opacity: 20,
-
-    //     shadowColor: "#000",
-    // shadowOffset: {
-    // 	width: 0,
-    // 	height: 12,
-    // },
-    // shadowOpacity: 58,
-    // shadowRadius: 16.00,
+    marginTop: 20,
   },
   mainlogin: {
     backgroundColor: '#fff',
     height: '100%',
     width: '100%',
-    // shadowOpacity :0.5
-    opacity: 0.6,
   },
-
   Kanoontext: {
     color: '#000',
     fontSize: 30,
@@ -138,7 +141,6 @@ const styles = StyleSheet.create({
   Gurustext: {
     color: '#ff5500',
   },
-
   kanoon: {
     fontSize: 28,
     color: '#fff',
@@ -152,27 +154,20 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   loginscreentop: {
-    // top : 0,
-    // position :'absolute',
     alignItems: 'center',
-    // justifyContent :'center',
-    // backgroundColor :'red',
     marginTop: 50,
     width: '100%',
   },
-
   logo: {
     height: 100,
     width: 100,
     borderRadius: 50,
-    // alignItems :'center',
   },
   loginmob: {
     color: '#d1d1d1',
     textAlign: 'center',
     marginTop: 5,
   },
-
   inputarea: {
     marginTop: 40,
     width: '100%',
@@ -181,13 +176,14 @@ const styles = StyleSheet.create({
   nothaveaccountcontainer: {
     marginTop: 60,
     alignItems: 'center',
+    flex:1,
+    marginBottom: 10
   },
   loginbtn: {
     marginTop: 60,
   },
   mobileno: {
     color: '#d1d1d1',
-    //   fontSize :
   },
   nothaveaccount: {
     color: '#d1d1d1',
@@ -205,13 +201,11 @@ const styles = StyleSheet.create({
   inputboxlogin: {
     borderBottomWidth: 1,
   },
-
   image: {
     flex: 1,
     resizeMode: 'cover',
     justifyContent: 'center',
-    // opacity: .6,
-    // backgroundColor :'#fff'
+    backgroundColor: '#fff',
   },
   text: {
     color: 'white',
