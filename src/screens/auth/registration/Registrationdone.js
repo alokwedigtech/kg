@@ -2,38 +2,29 @@ import React from 'react';
 import {View, Text, StyleSheet, TextInput, ScrollView} from 'react-native';
 import Registrationindicator from '../../../components/Registrationindicator';
 import Touchablebutton from '../../../components/touchablebutton';
+import Touchablefullbutton from '../../../components/Fullbutton';
 
-const About = ({navigation}) => {
+const Registrationdone = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <Registrationindicator />
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.containerprofile}>
-          <View style={styles.profilecontainer}>
-            <View style={styles.inputaera}>
-              <Text style={styles.inputlabelabout}>About You</Text>
-              <TextInput
-                placeholder={'1000 words'}
-                style={styles.inputboxlogin}
-                maxLength={1000}
-                multiline={true}
-                numberOfLines={3}
-              />
-            </View>
-          </View>
-          <View style={styles.bottombtn}>
-            <Touchablebutton
-              content={'Back'}
-              onPress={() => navigation.goBack()}
-            />
-            <Touchablebutton
-              content={'Next'}
-              type={'next'}
-              onPress={() => navigation.navigate('Socialmedia')}
-            />
+      <View style={styles.containerprofile}>
+        <View style={styles.profilecontainer}>
+          <View style={styles.inputaera}>
+            <Text style={styles.inputlabelabout}>Thank You !</Text>
+            <Text style={styles.thanksmessage}>
+              Thanks for providing your information. Our Team will contact you
+              in a while so that you can complete your registration
+            </Text>
           </View>
         </View>
-      </ScrollView>
+        <View style={styles.bottombtn}>
+          <Touchablefullbutton
+            content={'Continue'}
+            type={'next'}
+            onPress={() => navigation.navigate('Consultdash')}
+          />
+        </View>
+      </View>
     </View>
   );
 };
@@ -50,15 +41,22 @@ const styles = StyleSheet.create({
     width: '100%',
     marginBottom: 25,
   },
+  thanksmessage:{
+      marginTop : 15, textAlign :'center',
+      fontSize : 18,
+      color:'#000'
+    //   color:'#6b6b6b'
+  },
   inputlabelabout: {
-    fontSize: 18,
-    color: '#000',
+    fontSize:30,
+    color: '#fd551f',
     fontWeight: 'bold',
+    textAlign :'center'
   },
   containerprofile: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 50,
     paddingHorizontal: 20,
   },
   userprofile: {
@@ -88,4 +86,4 @@ const styles = StyleSheet.create({
     // textAlign:'right'
   },
 });
-export default About;
+export default Registrationdone;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 
-export default function RadioButtons({ options, selectedOption, onSelect }) {
+export default function Articleplanlist({ options, selectedOption, onSelect }) {
   return (
     <View style={styles.buttonContainer1}>
       {options.map((item) => {
@@ -17,7 +17,11 @@ export default function RadioButtons({ options, selectedOption, onSelect }) {
                 <View style={styles.checkedCircle} />
               )}
             </TouchableOpacity>
-            <Text>{item.text}</Text>
+            <View>
+            <Text>{item.plantype}</Text>
+            <Text>{item.plandes}</Text>
+                </View>
+            
           </View>
         );
       })}
@@ -28,11 +32,13 @@ export default function RadioButtons({ options, selectedOption, onSelect }) {
 const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
+    marginTop : 30
     // justifyContent:'flex-start'
   },
   buttonContainer1: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    // flexDirection: 'row',
+    // justifyContent: 'space-between',
+    // alignItems :'center'
   },
 
   circle: {

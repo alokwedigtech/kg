@@ -43,14 +43,15 @@ const Login = ({ navigation }) => {
       /> */}
       <View style={styles.container}>
         <ImageBackground
-          source={require('../../../assests/images/girllawer.jpg')}
+          source={require('../../../assests/images/aaaa.png')}
           style={styles.image}>
           <View
             style={{
               flex: 1,
               // backgroundColor: '#fafafa'
             }}>
-            <View style={{ flex: 1 }}>
+              <ScrollView>
+            <View style={{ flex: 1  }}>
               <View style={styles.loginscreentop}>
                 <Image
                   source={require('../../../assests/images/girllawer.jpg')}
@@ -62,7 +63,7 @@ const Login = ({ navigation }) => {
               </View>
 
               <View style={styles.loginscreen}>
-                <ScrollView showsVerticalScrollIndicator={false}>
+                
                 <Text style={styles.loginheading}>Lawyer's Login</Text>
                 <Text style={styles.loginmob}>
                   Enter your mobile no. to login
@@ -105,9 +106,9 @@ const Login = ({ navigation }) => {
                     </Text>
                   </View>
                 </View>
-              </ScrollView>
               </View>
             </View>
+            </ScrollView>
           </View>
         </ImageBackground>
       </View>
@@ -124,9 +125,15 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     backgroundColor: '#fff',
-    borderTopRightRadius: 100,
-    borderTopLeftRadius: 100,
+    borderTopRightRadius: 90,
+    borderTopLeftRadius: 90,
     marginTop: 20,
+    overflow : 'hidden',
+    // transform : [ { scaleX : 2 } ],
+    // transform : [ { scaleX : 2 } ],
+    //     borderBottomStartRadius : 200,
+    //     borderBottomEndRadius : 200,
+    //     overflow : 'hidden',
   },
   mainlogin: {
     backgroundColor: '#fff',
@@ -134,7 +141,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   Kanoontext: {
-    color: '#000',
+    color: '#fff',
     fontSize: 30,
     fontWeight: 'bold',
   },

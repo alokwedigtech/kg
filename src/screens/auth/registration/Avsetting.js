@@ -2,18 +2,16 @@ import React from 'react';
 import {View, Text, StyleSheet, TextInput, ScrollView} from 'react-native';
 import Registrationindicator from '../../../components/Registrationindicator';
 import Touchablebutton from '../../../components/touchablebutton';
-
-const About = ({navigation}) => {
+import Touchablefullbutton from '../../../components/Fullbutton'
+const Avsetting = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <Registrationindicator />
-      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.containerprofile}>
           <View style={styles.profilecontainer}>
             <View style={styles.inputaera}>
-              <Text style={styles.inputlabelabout}>About You</Text>
+              <Text style={styles.inputlabelabout}>Audio and vidio</Text>
               <TextInput
-                placeholder={'1000 words'}
+                placeholder={'Yogi Kumar'}
                 style={styles.inputboxlogin}
                 maxLength={1000}
                 multiline={true}
@@ -22,18 +20,13 @@ const About = ({navigation}) => {
             </View>
           </View>
           <View style={styles.bottombtn}>
-            <Touchablebutton
-              content={'Back'}
-              onPress={() => navigation.goBack()}
-            />
-            <Touchablebutton
-              content={'Next'}
-              type={'next'}
-              onPress={() => navigation.navigate('Socialmedia')}
+            <Touchablefullbutton
+            content={"Save"}
+            type={"next"}
+            onPress={()=>navigation.navigate('Notification')}
             />
           </View>
         </View>
-      </ScrollView>
     </View>
   );
 };
@@ -58,7 +51,7 @@ const styles = StyleSheet.create({
   containerprofile: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 50,
     paddingHorizontal: 20,
   },
   userprofile: {
@@ -88,4 +81,4 @@ const styles = StyleSheet.create({
     // textAlign:'right'
   },
 });
-export default About;
+export default Avsetting;

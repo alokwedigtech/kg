@@ -1,46 +1,94 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   View,
   Text,
-  Image,
   StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  Button,
   ScrollView,
-  Picker,
 } from 'react-native';
-import RadioButton from '../../../components/Radiobutton';
-import genderdata from '../../../staticdata/genderdata';
-import StyledButton from '../../../components/Button';
 import Registrationindicator from '../../../components/Registrationindicator';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import Entypo from 'react-native-vector-icons/Entypo';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Dropdownpicker from '../../../components/dropdown';
-import {Sae} from 'react-native-textinput-effects';
 import Touchablebutton from '../../../components/touchablebutton';
+import RadioButton from '../../../components/Radiobutton';
 
 const Selfassestement = ({navigation}) => {
-  const [selectedValue, setSelectedValue] = useState('java');
+  const questionsoptions = [
+    {
+      key: 'Male',
+      text: '32',
+    },
+    {
+      key: 'female',
+      text: '877',
+    },
+    {
+      key: 'other',
+      text: '98',
+    },
+    {
+      key: 'ss',
+      text: '784',
+    },
+
+  ];
+  const [selectedOption, setSelectedOption] = React.useState(null);
+
+  const onSelect = item => {
+    if (selectedOption && selectedOption.key === item.key) {
+      setSelectedOption(null);
+    } else {
+      setSelectedOption(item);
+    }
+  };
+
 
   return (
     <View style={styles.container}>
       <Registrationindicator />
       <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.selfasscontainer}>
+          <Text style={styles.selfassheading}>Self Assessment</Text>
+          <View style={styles.selfasscontainerfield}>
+            <View>
+              <Text style={styles.selfasstext}>Pratica Anna</Text>
+              <Text style={styles.selfassbranch}>Civil</Text>
+            </View>
+            <View>
+              <Text style={styles.selfasstext}>Total Questions</Text>
+              <Text style={styles.selfassbranch}>5/25</Text>
+            </View>
+            <View></View>
+          </View>
+        </View>
         <View style={styles.containerprofile}>
           <View style={styles.profilecontainer}>
-            <Text style={styles.personaldetailstext}>Selfassestement</Text>
-            <Text style={styles.socialmediastext}>
-              This will increase the KG rating
+            <Text style={styles.selfquestion}>
+              How many Constitution does India have
             </Text>
-
-            <View>
-              <TouchableOpacity style={styles.uploadbtn}>
-                <Text style={styles.uploadtext}>Upload Image</Text>
-              </TouchableOpacity>
-            </View>
+              <RadioButton
+                selectedOption={selectedOption}
+                onSelect={onSelect}
+                options={questionsoptions}
+              />
           </View>
+
+          <View style={styles.profilecontainer}>
+            <Text style={styles.selfquestion}>
+              How many Constitution does India have
+            </Text>
+              <RadioButton
+                selectedOption={selectedOption}
+                onSelect={onSelect}
+                options={questionsoptions}
+              />
+          </View>
+
+          
+
+          
+          
+        
+      
+          
+       
 
           <View style={styles.bottombtn}>
             <Touchablebutton
@@ -64,62 +112,36 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f5f5f5',
   },
+  selfasscontainer: {
+    marginTop: 30,
+    paddingHorizontal: 20,
+    width: '100%',
+  },
+  selfassheading: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  selfasscontainerfield: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
+    width: '100%',
+  },
+  selfasstext: {
+    fontSize: 12,
+    color: '#808080',
+  },
+  selfassbranch: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    marginTop: 5,
+  },
   bottombtn: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginTop: 40,
     width: '100%',
-    // flex :1,
     marginBottom: 25,
-    // position: 'absolute',
-    // bottom : 0
-  },
-  uploadbtn: {
-    padding: 13,
-    backgroundColor: '#000',
-    borderRadius: 20,
-    marginTop: 40,
-  },
-  uploadtext: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  socialmediastext: {
-    color: '#e0e0e0',
-  },
-  inputlabelabout: {
-    fontSize: 18,
-    color: '#000',
-    fontWeight: 'bold',
-  },
-
-  backbtn: {
-    backgroundColor: '#f5f5f5',
-    padding: 15,
-    borderRadius: 15,
-    width: '45%',
-    // textAlign :'center'
-  },
-  backtext: {
-    textAlign: 'center',
-    color: '#000',
-    fontSize: 15,
-    fontWeight: 'bold',
-  },
-  nexttext: {
-    textAlign: 'center',
-    color: '#fff',
-    fontSize: 15,
-    fontWeight: 'bold',
-  },
-  nextbtn: {
-    backgroundColor: '#fc5820',
-    padding: 15,
-    borderRadius: 15,
-    width: '50%',
-    // textAlign :'center'
   },
   containerprofile: {
     justifyContent: 'center',
@@ -127,53 +149,19 @@ const styles = StyleSheet.create({
     marginTop: 30,
     paddingHorizontal: 20,
   },
-  userprofile: {
-    alignSelf: 'center',
-    // margin: 10
-  },
-  inputaera: {
-    marginTop: 10,
-    // height: 150,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: '100%',
-    alignItems: 'center',
-  },
-  userprofileedit: {
-    // alignSelf: 'flex-end',
-    // paddingRight: 20,
-    width: '10%',
-  },
-  personaldetailstext: {
-    fontSize: 22,
+  selfquestion: {
+    fontSize: 19,
     fontWeight: 'bold',
     marginBottom: 10,
   },
-  genderselect: {
-    fontSize: 18,
-    color: '#c1c1c1',
-    marginTop: 20,
-    marginBottom: 20,
-  },
-  inputlabel: {
-    color: '#c1c1c1',
-    fontSize: 15,
-  },
-
   profilecontainer: {
-    // height: 150,
     width: '100%',
     backgroundColor: '#fff',
     borderRadius: 20,
     paddingHorizontal: 20,
     paddingVertical: 20,
-    // marginTop:-50
-    // marginBottom: -40,
-  },
-
-  inputboxlogin: {
-    borderBottomWidth: 1,
-    width: '90%',
+    marginTop: 30
   },
 });
+
 export default Selfassestement;

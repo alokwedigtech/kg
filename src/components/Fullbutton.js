@@ -4,7 +4,7 @@ import {Text, TouchableOpacity,StyleSheet} from 'react-native';
 const Touchablefullbutton = (props) => {
     const {type, content, onPress} = props;
 
-  const backgroundColor = type === 'next' ? '#fc5820' : '#2f2f2f';
+  const backgroundColor = type === 'next' ? '#fd551f' : '#2f2f2f';
   const textColor = type === 'next' ? '#FFFFFF' : '#fff';
   return (
     <TouchableOpacity

@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     paddingRight: 20,
   },
   personaldetailstext: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 25,
   },
